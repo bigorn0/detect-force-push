@@ -19,11 +19,11 @@ jobs:
         with:
             # Slack channel id, channel name, or user id to post message.
             # See also: https://api.slack.com/methods/chat.postMessage#channels
-            channel-id: 'D02LRGN3VRV'
+            channel-id: 'develop-direct-pushes'
             # For posting a rich message using Block Kit
             payload: |
                 {
-                    "text": "Possible upcoming chaos: ${{ github.event.head_commit.url }}",
+                    "text": " ${{ github.event.head_commit.url }}",
                     "blocks": [
                     {
                         "type": "section",
