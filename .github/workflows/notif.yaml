@@ -5,7 +5,7 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop' && github.event.forced
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.forced
     steps:
       - name: notify if push was forced
         run: echo "This was a forced pushed commit"
