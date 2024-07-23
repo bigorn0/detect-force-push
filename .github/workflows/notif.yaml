@@ -1,0 +1,11 @@
+#https://docs.github.com/en/webhooks/webhook-events-and-payloads#push
+name: notify-force-push
+on:
+  push:
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop' && github.event.forced
+    steps:
+      - name: notify if push was forced
+        run: echo "This was a forced pushed commit"
