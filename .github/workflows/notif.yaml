@@ -2,10 +2,14 @@
 name: notify-force-push
 on:
   push:
+    branches:
+        - main
 jobs:
   notify:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    env:
+        AUTHOR: ${{ github.event.pusher.name }}
     steps:
       - name: notify
-        run: echo "${{ github.event.sender }}"
+        run: echo "${AUTHOR}"
