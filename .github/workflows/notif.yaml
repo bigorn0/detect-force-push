@@ -13,3 +13,26 @@ jobs:
     steps:
       - name: notify
         run: echo "${AUTHOR}"
+      - name: notify slack
+        id: slack
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+            # Slack channel id, channel name, or user id to post message.
+            # See also: https://api.slack.com/methods/chat.postMessage#channels
+            channel-id: 'D02LRGN3VRV'
+            # For posting a rich message using Block Kit
+            payload: |
+                {
+                    "text": "Possible upcoming chaos: ${{ github.event.head_commit.url }}",
+                    "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                        "type": "mrkdwn",
+                        "text": "AHHHHHHHHH! ${{ github.event.head_commit.url }}"
+                        }
+                    }
+                    ]
+                }
+        env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
